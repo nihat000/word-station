@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tirac</title>
+	<link rel="stylesheet" href="css/special.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/game.js" defer></script>
+</head>
+
+<body>
+	<div class="generator">
+		<div class="generator-head">
+			<h1 class="generator-head-title text-center ">
+				Custom crossword generator
+			</h1>
+			<div class="generator-head-info">
+				Please consider, every next word should contain at least one letter of previous word.
+			</div>
+			<div class="generator-head-box">
+				<div class="words row">
+					<div class="form-group">
+						<input type="text">
+					</div>
+					<div class="list">
+						<span> Ilk </span>
+					</div>
+				</div>
+				<div class="row settings">
+					<div>
+						<span> Start direction </span>
+						<select name="" id="">
+							<option value="x">X</option>
+							<option value="">Y</option>
+						</select>
+					</div>
+					<div>
+						<span> Grid Settings</span>
+						<input type="text" size="2" placeholder="X" value="20">
+						<input type="text" size="2" placeholder="Y" value="20">
+					</div>
+				</div>
+				<div class="row button">
+					<button id="btn-generate"></button>
+				</div>
+			</div>
+			<div class="generator-head-loading">
+				<div id="loading-bar"></div>
+			</div>
+		</div>
+		<div class="generator-body">
+
+		</div>
+	</div>
+</body>
+
+</html>

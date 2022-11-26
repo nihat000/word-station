@@ -61,3 +61,36 @@
 
 
 // }
+
+
+//createLevel
+// state1 = true;
+// state2 = true;
+
+// // console.log(`x y direction  ${x} ${y} ${direction}`)
+
+// let letter = words[0][words.length - 1]
+// changeDirection()
+// moveBack(words[1].indexOf(letter));
+// print(words[1])
+
+
+
+// let letter_ = words[1][words.length - 1]
+// changeDirection()
+// moveBack(words[2].indexOf(letter_));
+// print(words[2])
+
+// let letter__ = words[2][words.length - 1]
+// changeDirection()
+// moveBack(words[3].indexOf(letter__));
+// print(words[3])
+
+// let letter___ = words[3][words.length - 1]
+// changeDirection()
+// moveBack(words[4].indexOf(letter___));
+// console.log(`x y direction  ${x} ${y} ${direction}`)
+// print(words[4])
+
+
+
