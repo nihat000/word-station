@@ -1,5 +1,9 @@
 const btnGenerate = document.getElementById('btn-generate')
+const inputEl = document.querySelector('.generator-head-box .words input')
 
+
+btnGenerate.addEventListener('click', btnGenerateClick)
+inputEl.addEventListener('keydown', inputKeydown)
 
 const Game = {
    settings: {
@@ -24,8 +28,8 @@ const Game = {
          color: "#fff",
       }
    },
-   words: ['online', 'chemistry', 'revision', 'aids'],
-   direction: 'x',
+   words: ['dama', 'adam',],
+   direction: 'y',
    maxX: 20,
    maxY: 20,
    x: 2,
@@ -33,19 +37,23 @@ const Game = {
 }
 
 
-btnGenerate.addEventListener('click', btnGenerateClick)
+
 
 function btnGenerateClick() {
    const loadingBar = document.getElementById('loading-bar')
-   let startPoint = 0;
+   let startPoint = 1;
    const timeInterval = Math.floor(10 + Math.random() * 5)
+
    const timerID = setInterval(() => {
-      if (startPoint >= 100) {
-         loadingBar.style.width = "100%"
+      if (startPoint + 3 >= 98) {
+         loadingBar.style.width = "97.5%"
+         generate();
          clearInterval(timerID)
+      } else {
+         startPoint += (2)
+         loadingBar.style.width = startPoint + "%"
+
       }
-      startPoint += (3)
-      loadingBar.style.width = startPoint + "%"
    }, timeInterval)
 }
 
@@ -60,26 +68,34 @@ String.prototype.random = function () {
 }
 
 function createGrid() {
+   const width = 900;
 
-   for (let i = 1; i <= 40; i++) {
-      for (let j = 1; j <= 40; j++) {
+   const generatorBody = document.querySelector('.generator-body')
+   generatorBody.innerHTML = ''
+   generatorBody.style.width = width + 'px';
+   for (let i = 1; i <= Game.maxY; i++) {
+      for (let j = 1; j <= Game.maxX; j++) {
          let el = document.createElement('div')
-         el.classList = `a-${j}-${i} game-board-el`
-         document.querySelector('.game-board').append(el)
+         el.style.width = width / Game.maxX + 'px';
+         el.style.height = width / Game.maxY + 'px';
+         el.classList = `a-${j}-${i} `
+         generatorBody.append(el)
       }
+
    }
+
 
 
 }
 function changeDirection() {
-   direction = direction == 'x' ? 'y' : 'x';
+   Game.direction = Game.direction == 'x' ? 'y' : 'x';
 }
 
 function moveD(step) {
-   if (direction == 'x') {
-      x += step
-   } else if (direction == 'y') {
-      y += step
+   if (Game.direction == 'x') {
+      Game.x += step
+   } else if (Game.direction == 'y') {
+      Game.y += step
    }
 }
 
@@ -88,43 +104,47 @@ function moveD(step) {
 
 function print(w, wi) {
    for (let i = 0; i < w.length; i++) {
-      let span = document.createElement('span')
-      span.innerText = w[i]
-      let el = document.querySelector(`.a-${x}-${y}`)
-      if (el.childElementCount == 0) {
-         el.classList.add(`bg-${wi + 1}`)
-         el.append(span)
+      let el = document.createElement('span')
+      el.innerText = w[i]
+      let parentEl = document.querySelector(`.a-${Game.x}-${Game.y}`)
+      if (parentEl) {
+         break
+      }
+      if (parentEl.childElementCount == 0) {
+         parentEl.classList.add('bg-purple')
+         parentEl.classList.add('border-style-1')
+         el.classList.add('text-white')
+         parentEl.append(el)
       }
 
-      if (direction == 'x' && i < w.length - 1) {
-         x++;
-      } else if (direction == 'y' && i < w.length - 1) {
-         y++;
+      if (Game.direction == 'x' && i < w.length - 1) {
+         Game.x++;
+      } else if (Game.direction == 'y' && i < w.length - 1) {
+         Game.y++;
       }
    }
    console.log(`Printed ${w}`)
 }
 
-// createGrid();
-
-
 
 function printAll() {
-   print(words[0], 0)
-   for (let i = 1; i < words.length; i++) {
+   let safety = 0;
+   print(Game.words[0], 0)
+   for (let i = 1; i < Game.words.length; i++) {
       let count = 0;
       while (true) {
-         // let letter = words[i - 1].random();
-         let letter = words[i - 1][words[i - 1].length - 1 - count]
-         let firstOffset = words[i - 1].indexOf(letter) + 1 - words[i - 1].length  // negative
-         let commonLetterIndex = words[i].indexOf(letter)
+         safety++; if (safety > 1000) break;
+         // let letter = Game.words[i - 1].random();
+         let letter = Game.words[i - 1][Game.words[i - 1].length - 1 - count]
+         let firstOffset = Game.words[i - 1].indexOf(letter) + 1 - Game.words[i - 1].length  // negative
+         let commonLetterIndex = Game.words[i].indexOf(letter)
          // console.log(`firstOffset ${firstOffset}  commonLetterIndex ${commonLetterIndex} , x= ${x} y=${y}  `);
          if (commonLetterIndex > -1) {
 
             moveD(firstOffset)
             changeDirection()
             moveD(-commonLetterIndex)
-            print(words[i], i)
+            print(Game.words[i], i)
             break;
          }
          count++;
@@ -132,12 +152,6 @@ function printAll() {
       }
    }
 }
-
-
-
-
-
-
 
 
 // function removeEmptyGrid() {
@@ -175,19 +189,28 @@ function printAll() {
 
 
 
-const inputEl = document.querySelector('.generator-head-search input')
-inputEl.addEventListener('keydown', keydown)
 
-function keydown(e) {
+
+function inputKeydown(e) {
    console.log(e.key)
    if (e.key == ' ') {
       console.log('debug');
       let span = document.createElement('span')
       span.innerText = e.target.value;
-      e.target.value = ""
-      span.classList.add('added-word')
-      document.querySelector('.generator-head-search').append(span)
+      document.querySelector('.generator-head-box .words .list').append(span)
 
    }
 }
 
+
+function generate() {
+   const maxX = parseInt(document.querySelector('.generator-head-box .settings .g-x').value)
+   const maxY = parseInt(document.querySelector('.generator-head-box .settings .g-y').value)
+
+   Game.maxX = maxX > 30 || maxX < 10 ? 10 : maxX;
+   Game.maxY = maxY > 30 || maxY < 10 ? 10 : maxY;
+
+   createGrid()
+   // print(Game.words[0])
+   printAll();
+}

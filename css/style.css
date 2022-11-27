@@ -53,6 +53,10 @@ html {
   border: 2px solid #d5d5d5;
   padding: 0.5rem 0.7rem;
   cursor: pointer;
+  margin-left: 1rem;
+}
+.generator-head-box .words .list span:hover {
+  background-color: #A3C7D6;
 }
 .generator-head-box .settings {
   margin-left: 0.5rem;
@@ -97,16 +101,18 @@ html {
 .generator-head-loading {
   margin-top: 2rem;
   width: 100%;
-  height: 10px;
-  background-color: rgba(0, 0, 0, 0.25);
-  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.25);
+  height: 25px;
+  box-shadow: inset 0 1px 2px 1px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
-  padding: 0.4rem 0.6rem;
+  position: relative;
 }
 .generator-head-loading div {
-  width: 100%;
-  height: 5px;
-  background-color: blue;
+  position: absolute;
+  left: 1%;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 15px;
+  background: repeating-linear-gradient(45deg, rgb(252, 163, 17) 25%, rgb(252, 130, 25) 25%, rgb(252, 163, 17) 50%, rgb(252, 130, 25) 50%, rgb(252, 163, 17) 75%, rgb(252, 130, 25) 75%, rgb(252, 163, 17) 100%, transparent 100%);
 }
 .generator-body {
   display: flex;
@@ -117,17 +123,12 @@ html {
   align-items: center;
   justify-content: center;
 }
-.generator-body-el {
+.generator-body div {
   overflow: hidden;
-  width: 16px;
-  height: 16px;
-  margin-bottom: 5px;
-  border: 1px solid #eee;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
 }
-.generator-body-el:hover {
+.generator-body div:hover {
   opacity: 0.7;
 }/*# sourceMappingURL=style.css.map */

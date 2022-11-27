@@ -62,7 +62,12 @@ html {
                   border: 2px solid #d5d5d5;
                   padding: .5rem .7rem;
                   cursor: pointer;
+                  margin-left: 1rem;
 
+               }
+
+               span:hover {
+                  background-color: #A3C7D6;
                }
             }
          }
@@ -124,16 +129,24 @@ html {
       &-loading {
          margin-top: 2rem;
          width: 100%;
-         height: 10px;
-         background-color: rgba(0, 0, 0, 0.25);
-         box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.25), ;
+         height: 25px;
+         // background-color: #ddd;
+         box-shadow: inset 0 1px 2px 1px rgba(0, 0, 0, 0.25), ;
          border-radius: 20px;
-         padding: .4rem .6rem;
+         // padding: .4rem .6rem;
+         position: relative;
 
          div {
-            width: 100%;
-            height: 5px;
-            background-color: blue;
+            position: absolute;
+            left: 1%;
+            top: 50%;
+            transform: translateY(-50%);
+            // width: 98%;
+            height: 15px;
+            background: repeating-linear-gradient(45deg, rgb(252, 163, 17) 25%, rgb(252, 130, 25) 25%,
+                  rgb(252, 163, 17) 50%, rgb(252, 130, 25) 50%,
+                  rgb(252, 163, 17) 75%, rgb(252, 130, 25) 75%,
+                  rgb(252, 163, 17) 100%, transparent 100%, )
          }
       }
 
@@ -148,15 +161,15 @@ html {
       align-items: center;
       justify-content: center;
 
-      &-el {
+      & div {
          overflow: hidden;
-         width: 16px;
-         height: 16px;
-         margin-bottom: 5px;
-         border: 1px solid #eee;
+         // margin-right: 5px;
+         // margin-bottom: 5px;
+         // border: 1px solid #ddd;
          display: flex;
          justify-content: center;
          align-items: center;
+         background-color: #6C4AB6;
          color: #fff;
 
          &:hover {

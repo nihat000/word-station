@@ -42,3 +42,13 @@ html{
 .bg-5 {
    background-color: #DC3535 !important;
 }
+.bg-purple{
+   background-color: #6C4AB6;
+}
+.text-white{
+  color: #fff;
+}
+
+.border-style-1{
+   border: 2px solid #a9a9a9;
+}

@@ -2,19 +2,85 @@
 <html lang="en">
 
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>My Word</title>
-   <link rel="stylesheet" href="css/special.css">
-   <link rel="stylesheet" href="css/style.css">
-   <script src="js/createLevel.js"></script>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>My Word</title>
+	<link rel="stylesheet" href="css/special.css">
+	<!-- <link rel="stylesheet" href="css/style.css"> -->
+	<script src="./js/Play.js" defer></script>
+	<style>
+		.letters {
+			position: relative;
+			width: 300px;
+			height: 300px;
+			border: 2px solid #dedede;
+		}
+
+		.letters .letter {
+			position: absolute;
+			width: 60px;
+			height: 60px;
+			color: #fff;
+			background-color: #6b8b7f;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			user-select: none;
+			border-radius: 2px;
+
+		}
+
+		.letters .btn:hover {
+			opacity: .5;
+		}
+
+		.center {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 80px;
+			height: 80px;
+			background-color: #888;
+			border-radius: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		.g {
+			position: relative;
+		}
+
+		.g .empty {
+			position: absolute;
+			color: #fff;
+			background-color: purple;
+			width: 60px;
+			height: 60px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border: 1px solid #d5d5d5;
+			font-weight: bold;
+		}
+
+		.g .show {
+			position: absolute;
+			color: #fff;
+			background-color: purple;
+			width: 60px;
+			height: 60px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			border: 1px solid #d5d5d5;
+			font-weight: bold;
+		}
+	</style>
 </head>
 
 <body>
-   <div class="container">
-      .gam
-   </div>
+	<section></section>
 </body>
 
 </html>
