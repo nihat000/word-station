@@ -1,34 +1,54 @@
+let level;
 let Game = {
    level: 1,
    eraser: 3,
    money: 1500,
    letters: ['a', 'd', 'a', 'm'],
    words: ['adam', 'dama', 'dam', 'ada'],
-   words: [
-      { word: 'dama', start: [7, 2], direction: 'y' },
-      { word: 'adam', start: [7, 5], direction: 'x' },
-      { word: 'dam', start: [10, 2], direction: 'y' },
-   ],
+   lang: "az",
+   words: [],
    isPenDown: false,
    penArr: [],
    penIdArr: [],
+   revealedWords: [],
+   revealedWordsCount: 0,
+
+   squareSize: 40,
 
 
 }
 
-function buildInput() {
-   let parentEl = document.querySelector('.letters')
-   let degree = 360 / Game.letters.length;
-   for (let i = 0; i < Game.letters.length; i++) {
+
+const boardEl = document.querySelector('.game-screen .board')
+const gamePadEl = document.querySelector('.game-screen .gamepad')
+
+fetch(`./api/levels/${Game.level}.json`)
+   .then(res => res.json())
+   .then(res => { level = res; main() })
+
+
+
+function main() {
+   buildInput(level.lang[Game.lang].letters)
+   buildBoard(level.lang[Game.lang].words)
+}
+
+
+
+function buildInput(arr) {
+
+   let parentEl = document.querySelector('.gamepad')
+   let degree = 360 / arr.length;
+   for (let i = 0; i < arr.length; i++) {
       let finalDegree = i * degree;
 
       let btn = document.createElement('button')
-      btn.innerText = Game.letters[i]
+      btn.innerText = arr[i];
       btn.addEventListener('mousedown', mouseDown)
       btn.addEventListener('mousemove', mouseMove)
-      btn.addEventListener('mouseup', mouseUp)
-      btn.classList.add('letter')
+      btn.classList.add('gamepad-square')
       btn.dataset.id = i;
+
       if (0 <= finalDegree && finalDegree <= 45) {
          btn.style.top = 0
          btn.style.left = 50 + finalDegree / 90 * 100 + "%"
@@ -48,78 +68,20 @@ function buildInput() {
       }
       parentEl.append(btn)
    }
-}
-buildInput()
-
-
-function mouseDown(e) { Game.isPenDown = true }
-function mouseUp(e) {
-   Game.isPenDown = false; document.querySelectorAll('.letters .letter').forEach(b => { b.style.backgroundColor = '' });
-   let word = '';
-   for (let i = 0; i < Game.penArr.length; i++) {
-      word += Game.penArr[i];
-   }
-   Game.penArr = []
-   Game.penIdArr = [];
-   console.log(word)
-   for (let i = 0; i < Game.words.length; i++) {
-      if (Game.words[i].word == word) {
-         console.log('You found it')
-         showWord(Game.words[i])
-         break;
-      }
-   }
-
+   document.body.addEventListener('mouseup', mouseUp)
 }
 
-function mouseMove(e) {
-   if (!Game.isPenDown) {
-      return false
-   }
-   // console.log(e.target)
-   if (Game.penIdArr.indexOf(e.target.dataset.id) == -1) {
-      Game.penIdArr.push(e.target.dataset.id)
-      Game.penArr.push(e.target.innerText)
-      e.target.style.backgroundColor = "purple"
-   }
-
-}
-
-
-
-function print(obj) {
-   const { word, start, direction } = obj;
-   const size = 60
-   const parentEl = document.querySelector('.g');
-   for (let i = 0; i < word.length; i++) {
-      let div = document.createElement('div')
-      div.innerText = word[i]
-      div.style.left = start[0] * size + 'px'
-      div.style.top = start[1] * size + 'px'
-      parentEl.append(div)
-      if (direction == 'x') {
-         start[0]++
-      }
-      else if (direction == 'y') {
-         start[1]++
-      }
-   }
-}
-
-function buildGrid() {
-   const parentEl = document.querySelector('.g')
-   const size = 60
-   for (let i = 0; i < Game.words.length; i++) {
-      const obj = JSON.parse(JSON.stringify(Game.words[i]))
+function buildBoard(arr) {
+   for (let i = 0; i < arr.length; i++) {
+      const obj = JSON.parse(JSON.stringify(arr[i]))
       let { word, start, direction } = obj
 
       for (let j = 0; j < word.length; j++) {
-         console.log(start, Game.words[i].start)
          let div = document.createElement('div')
-         div.classList.add('empty')
-         div.style.left = start[0] * size + 'px'
-         div.style.top = start[1] * size + 'px'
-         parentEl.append(div)
+         div.classList.add('board-square')
+         div.style.left = start[0] * Game.squareSize + 'px'
+         div.style.top = start[1] * Game.squareSize + 'px'
+         boardEl.append(div)
          if (direction == 'x') {
             start[0]++
          }
@@ -131,20 +93,70 @@ function buildGrid() {
 
 }
 
+
+
+
+function mouseDown(e) { Game.isPenDown = true }
+function mouseUp(e) {
+
+   Game.isPenDown = false; document.querySelectorAll('.gamepad-square').forEach(b => { b.style.backgroundColor = '' });
+   let word = '';
+   for (let i = 0; i < Game.penArr.length; i++) {
+      word += Game.penArr[i];
+   }
+   console.log(word);
+   Game.penArr = []
+   Game.penIdArr = [];
+   const words = level.lang[Game.lang].words;
+
+   let isCorrect = false;
+   let i = 0;
+   for (; i < words.length; i++) {
+      if (word == words[i].word) {
+         isCorrect = true;
+         break;
+      }
+   }
+   if (isCorrect) {
+      console.log('You found it')
+      showWord(words[i])
+      Game.revealedWords.push(words[i])
+   } else {
+      gamePadEl.style.animation = ".2s shake"
+   }
+
+
+}
+
+function mouseMove(e) {
+   if (!Game.isPenDown) {
+      return false
+   }
+   // console.log(e.target)
+   if (Game.penIdArr.indexOf(e.target.dataset.id) == -1) {
+      Game.penIdArr.push(e.target.dataset.id)
+      Game.penArr.push(e.target.innerText)
+      e.target.style.backgroundColor = "#ac92ec"
+
+   }
+
+}
+
+
+
+
+
 function showWord(obj_) {
-   const parentEl = document.querySelector('.g')
-   const size = 60
    let obj = JSON.parse(JSON.stringify(obj_))
    let { start, direction, word } = obj;
    for (let j = 0; j < word.length; j++) {
 
       let div = document.createElement('div')
       div.innerText = word[j]
-      div.classList.add('show')
-      div.style.left = start[0] * size + 'px'
-
-      div.style.top = start[1] * size + 'px'
-      parentEl.append(div)
+      div.classList.add('board-letter')
+      div.style.left = start[0] * Game.squareSize + 'px'
+      div.style.top = start[1] * Game.squareSize + 'px'
+      boardEl.append(div)
       if (direction == 'x') {
          start[0]++
       }
@@ -155,6 +167,47 @@ function showWord(obj_) {
 }
 
 
-buildGrid()
+// buildGrid()
 
 // Game.words.forEach(a => print(a))
+
+
+function animate(element, name, duration) {
+   if (name == 'shake') {
+      let num = 0;
+      let checkpoint = 0;
+      const timerId = setInterval(() => {
+         num = 0;
+         if (checkpoint == 0) {
+            num++;
+         }
+
+      }, 50)
+   }
+}
+
+
+function eraserClick() {
+   const words = level.lang[Game.lang].words;
+   for (let i = 0; i < words.length; i++) {
+      let isRevealed = false
+      for (let j = 0; j < Game.revealedWords.length; j++) {
+         console.log(Game.revealedWords[j].word, words[i].word)
+         if (Game.revealedWords[j].word == words[i].word) {
+            isRevealed = true;
+            break;
+         }
+      }
+      if (!isRevealed) {
+         console.log(words[i])
+         let div = document.createElement('div')
+         div.innerText = words[i].word[0]
+         div.classList.add('board-letter')
+         div.style.left = words[i].start[0] * Game.squareSize + 'px'
+         div.style.top = words[i].start[1] * Game.squareSize + 'px'
+         boardEl.append(div)
+
+         break;
+      }
+   }
+}

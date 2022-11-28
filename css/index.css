@@ -1,0 +1,147 @@
+.game-screen {
+  background-color: #E5E5E5;
+}
+.game-screen .content {
+  max-width: 600px;
+  margin: auto;
+  position: relative;
+  background-size: cover;
+  border: 2px solid #a9a9a9;
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+.game-screen .status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background-color: #4b086d;
+  color: #fff;
+}
+.game-screen .status-assets {
+  display: flex;
+}
+.game-screen .status-assets-diamond {
+  display: flex;
+  align-items: center;
+}
+.game-screen .status-assets-diamond img {
+  width: 32px;
+  margin-left: 0.4rem;
+}
+.game-screen .status-assets-coin {
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
+}
+.game-screen .status-assets-coin img {
+  width: 2rem;
+  margin-left: 0.4rem;
+}
+.game-screen .board {
+  max-width: 600px;
+  margin: auto;
+  height: 400px;
+  position: relative;
+  border-radius: 5px;
+}
+.game-screen .board-square {
+  position: absolute;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border: 1px solid #4b086d;
+  border-radius: 6px;
+}
+.game-screen .board-letter {
+  position: absolute;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border: 1px solid #4b086d;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.game-screen .gamepad {
+  position: relative;
+  width: 300px;
+  margin: 2rem auto;
+  height: 300px;
+  border: 2px solid #dedede;
+  border-radius: 5px;
+  border-radius: 50%;
+  -webkit-animation: shake 0.2s;
+          animation: shake 0.2s;
+}
+.game-screen .gamepad-square {
+  position: absolute;
+  color: #fff;
+  background-color: #48cfad;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d5d5d5;
+  font-weight: bold;
+  border-radius: 50%;
+}
+.game-screen .gamepad-square:hover {
+  background-color: #ac92ec;
+}
+.game-screen .gamepad-square .selected {
+  background-color: #ac92ec !important;
+}
+.game-screen .gamepad-shuffle {
+  display: inline-block;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  left: 50%;
+  top: 50%;
+  background-color: #48cfad;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.game-screen .eraser {
+  position: absolute;
+  right: 0;
+  bottom: 30%;
+  border-radius: 50%;
+  border: 2px solid #a9a9a9;
+  padding: 0.4rem;
+  color: palegoldenrod;
+  cursor: pointer;
+}
+.game-screen .eraser img {
+  width: 40px;
+  height: 40px;
+  transform: rotateZ(90deg);
+}
+
+@-webkit-keyframes shake {
+  0% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(5px);
+  }
+  50% {
+    transform: translateX(-3px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}/*# sourceMappingURL=index.css.map */

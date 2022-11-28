@@ -7,80 +7,42 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>My Word</title>
 	<link rel="stylesheet" href="css/special.css">
-	<!-- <link rel="stylesheet" href="css/style.css"> -->
+	<link rel="stylesheet" href="css/index.css">
 	<script src="./js/Play.js" defer></script>
-	<style>
-		.letters {
-			position: relative;
-			width: 300px;
-			height: 300px;
-			border: 2px solid #dedede;
-		}
-
-		.letters .letter {
-			position: absolute;
-			width: 60px;
-			height: 60px;
-			color: #fff;
-			background-color: #6b8b7f;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			cursor: pointer;
-			user-select: none;
-			border-radius: 2px;
-
-		}
-
-		.letters .btn:hover {
-			opacity: .5;
-		}
-
-		.center {
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			width: 80px;
-			height: 80px;
-			background-color: #888;
-			border-radius: 50%;
-			transform: translate(-50%, -50%);
-		}
-
-		.g {
-			position: relative;
-		}
-
-		.g .empty {
-			position: absolute;
-			color: #fff;
-			background-color: purple;
-			width: 60px;
-			height: 60px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			border: 1px solid #d5d5d5;
-			font-weight: bold;
-		}
-
-		.g .show {
-			position: absolute;
-			color: #fff;
-			background-color: purple;
-			width: 60px;
-			height: 60px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			border: 1px solid #d5d5d5;
-			font-weight: bold;
-		}
-	</style>
 </head>
 
 <body>
-	<section></section>
+	<section class="game-screen">
+		<div class="content">
+			<div class="status">
+				<div class="status-level">
+					<span id="level"> Level 1</span>
+				</div>
+				<div class="status-assets">
+					<div class="status-assets-diamond">
+						<span> 5 </span>
+						<img src="img/diamond.svg" alt="">
+					</div>
+					<div class="status-assets-coin">
+						<span> 1200 </span>
+						<img src="img/coin.svg" alt="">
+					</div>
+				</div>
+			</div>
+			<div class="board"></div>
+			<div class="gamepad">
+				<span class="gamepad-shuffle"></span>
+			</div>
+			<div class="eraser" onclick="eraserClick()">
+				<img src="img/eraser.svg" alt="">
+			</div>
+		</div>
+	</section>
+	<section class="start-screen">
+		<div class="content">
+
+		</div>
+	</section>
 </body>
 
 </html>
