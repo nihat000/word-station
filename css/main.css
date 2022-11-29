@@ -308,7 +308,7 @@ html {
   width: 100%;
 }
 .start-screen > .content .stage .stage-box:nth-child(2) {
-  display: none;
+  margin-top: 1.25rem;
 }
 .start-screen > .content .stage .stage-previous {
   display: inline-block;
