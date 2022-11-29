@@ -35,22 +35,46 @@ setTimeout(fetchData, 100)
 function fetchData() {
    fetch(`./api/levels/${Game.level}.json`)
       .then(res => res.json())
+
       .then(res => { level = res; App() })
 }
 
 
 function App() {
-   document.querySelector('.loading-screen').classList.toggle('d-none')
-   document.querySelector('.start-screen').classList.toggle('d-none')
+   loadingScreen.classList.toggle('d-none')
+   startScreen.classList.toggle('d-none')
+
+}
+
+function toggleInfo() {
+   if (document.querySelector('.start-screen-info').style.display == 'block') {
+
+      document.querySelector('.start-screen h2').style.display = "block";
+      document.querySelector('.start-screen .stage').style.display = "block";
+      document.querySelector('.start-screen .actions').style.display = "block";
+      document.querySelector('.start-screen-info').style.display = "none";
+   }
+   else {
+      document.querySelector('.start-screen h2').style.display = "none";
+      document.querySelector('.start-screen .stage').style.display = "none";
+      document.querySelector('.start-screen .actions').style.display = "none";
+      document.querySelector('.start-screen-info').style.display = "block";
+   }
+
+}
+
+function closeInfo() {
 
 }
 
 
-
-function main() {
+function play() {
+   startScreen.classList.toggle('d-none')
+   gameScreen.classList.toggle('d-none')
    buildInput(level.lang[Game.lang].letters)
    buildBoard(level.lang[Game.lang].words)
 }
+
 
 
 
@@ -91,6 +115,7 @@ function buildInput(arr) {
 }
 
 function buildBoard(arr) {
+   boardEl.innerHTML += "";
    for (let i = 0; i < arr.length; i++) {
       const obj = JSON.parse(JSON.stringify(arr[i]))
       let { word, start, direction } = obj
@@ -140,6 +165,7 @@ function mouseUp(e) {
       console.log('You found it')
       showWord(words[i])
       Game.revealedWords.push(words[i])
+      checkFinish()
    } else {
       gamePadEl.style.animation = ".2s shake"
    }
@@ -162,6 +188,41 @@ function mouseMove(e) {
 }
 
 
+function checkFinish() {
+   if (Game.revealedWords.length == level.lang[Game.lang].words.length) {
+      console.log('You won')
+      showNextLevel()
+   }
+}
+
+
+function showNextLevel() {
+   document.querySelector('.modal-won').classList.toggle('d-none')
+}
+
+function restartLevel() {
+   Game.revealedWords = []
+   document.querySelector('.modal-won').classList.toggle('d-none')
+   buildInput(level.lang[Game.lang].letters)
+   buildBoard(level.lang[Game.lang].words)
+}
+
+function nextLevel() {
+   Game.revealedWords = []
+   Game.level++
+   fetch(`./api/levels/${Game.level}.json`)
+      .then(res => res.json())
+
+      .then(res => {
+         level = res;
+         document.querySelector('.modal-won').classList.toggle('d-none')
+         buildInput(level.lang[Game.lang].letters)
+         buildBoard(level.lang[Game.lang].words)
+
+      })
+
+
+}
 
 
 

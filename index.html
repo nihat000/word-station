@@ -25,8 +25,8 @@
 			<h1> Menu </h1>
 			<h2 class="name text-center mt-2"> Word Station </h2>
 			<div class="stage">
-				<img class="stage-previous" src="img/btn-previous.svg" alt="">
-				<img class="stage-next" src="img/btn-next.svg" alt="" srcset="">
+				<!-- <img class="stage-previous" src="img/btn-previous.svg" alt=""> -->
+				<!-- <img class="stage-next" src="img/btn-next.svg" alt="" srcset=""> -->
 				<div class="stage-box">
 					<img src="img/stage-genclik.svg" alt="">
 				</div>
@@ -35,17 +35,16 @@
 				</div>
 			</div>
 			<div class="actions">
-				<img src="img/btn-info.svg" alt="" srcset="" width="64px">
-				<img class="play" src="img/btn-play.svg" alt="" width="64px">
+				<img src="img/btn-info.svg" alt="" srcset="" width="64px" onclick="toggleInfo()">
+				<img class="play" src="img/btn-play.svg" alt="" width="64px" onclick="play()">
 				<img src="img/btn-shop.svg" alt="" width="64px">
 			</div>
-			<div class="start-screen-info">
-				<div class="content">
-					<h1> Info </h1>
-					<p> Made by love </p>
-					<p> Developer : Nihat Abdullazade </p>
-					<p> Graphic Designer : Ibrahim </p>
-				</div>
+			<div class="start-screen-info d-none">
+				<img onclick="toggleInfo()" src="img/btn-previous.svg" class="info-back"></img>
+				<h2 class="text-center"> Info </h2>
+				<p> Made by love </p>
+				<p> Developer : Nihat Abdullazade </p>
+				<p> Graphic Designer : Ibrahim </p>
 			</div>
 		</div>
 	</section>
@@ -75,6 +74,18 @@
 			</div>
 		</div>
 	</section>
+
+	<div class="modal-won d-none">
+		<div class="content">
+			<h1> Congrats </h1>
+			<p> You are doing well,keep continuing </p>
+			<div>
+				<button onclick="restartLevel()"> Restart</button>
+				<button onclick="nextLevel()"> Continue </button>
+			</div>
+		</div>
+	</div>
+
 
 </body>
 

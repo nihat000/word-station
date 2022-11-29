@@ -3,35 +3,36 @@
 	"lang": {
 		"az": {
 			"letters": [
-				"a",
+				"u",
+				"l",
 				"d",
-				"a",
-				"m"
+				"u",
+				"z"
 			],
 			"words": [
 				{
-					"word": "dama",
+					"word": "ulduz",
 					"start": [
 						2,
+						2
+					],
+					"direction": "x"
+				},
+				{
+					"word": "uduz",
+					"start": [
+						5,
 						2
 					],
 					"direction": "y"
 				},
 				{
-					"word": "adam",
-					"start": [
-						2,
-						5
-					],
-					"direction": "x"
-				},
-				{
-					"word": "dam",
+					"word": "duz",
 					"start": [
 						5,
 						3
 					],
-					"direction": "y"
+					"direction": "x"
 				}
 			]
 		},

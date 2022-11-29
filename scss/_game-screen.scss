@@ -1,15 +1,21 @@
 .game-screen {
-   background-color: #E5E5E5;
+   background-color: #5855c0;
+   width: 100%;
+   height: 100vh;
+   padding: .1rem;
 
    .content {
-      max-width: 600px;
-      // padding: .1rem;
+      max-width: $screen-size;
+      height: 800px;
       margin: auto;
+      margin-top: 3rem;
       position: relative;
-      // background-image: url("../img/board-cover.svg");
-      background-size: cover;
-      border: 2px solid #a9a9a9;
-      box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.25);
+      background-color: #DDD6CE;
+      border-bottom: 12px solid #cf9581;
+      position: relative;
+      border-radius: 35px;
+      padding-bottom: 2rem;
+
    }
 
    .status {
@@ -87,7 +93,7 @@
       width: 200px;
       margin: 2rem auto;
       height: 200px;
-      border: 2px solid #dedede;
+      // border: 2px solid #dedede;
       border-radius: 5px;
       border-radius: 50%;
       animation: shake .2s;
@@ -95,9 +101,9 @@
       &-square {
          position: absolute;
          color: #fff;
-         background-color: $secondary-color;
-         width: 60px;
-         height: 60px;
+         background-color: #cf9581;
+         width: 100px;
+         height: 100px;
          display: flex;
          align-items: center;
          justify-content: center;
@@ -144,6 +150,62 @@
          width: 40px;
          height: 40px;
          transform: rotateZ(90deg);
+      }
+   }
+}
+
+.modal-won {
+   width: 600px;
+   height: 600px;
+   position: absolute;
+   left: 50%;
+   margin: auto;
+   top: 0;
+   z-index: 5;
+   transform: translateX(-50%);
+   margin-top: 3rem;
+   background-color: rgba(0, 0, 0, 0.2);
+   display: flex;
+
+   justify-content: center;
+   align-items: center;
+
+   .content {
+      width: 500px;
+      margin-top: 2.5rem;
+      background-color: #DDD6CE;
+      border: 4px solid #eee;
+      border-radius: 5px;
+      outline: 4px solid black;
+
+      h1 {
+
+         // margin-top: -2rem;
+         text-align: center;
+         width: 40%;
+         margin: auto;
+         background-color: #cf9581;
+         border-radius: 0 0 5px 5px;
+      }
+
+      p {
+         text-align: center;
+         font-size: 2rem;
+         margin-top: 2rem;
+      }
+
+      div {
+         width: 220px;
+         margin: auto;
+         margin-top: 1.25rem;
+         // margin-bottom: 1.25rem;
+
+         button {
+            padding: 1rem 1.2rem;
+            border-radius: 5px;
+            background-color: #26968b;
+            margin-right: 1rem;
+         }
       }
    }
 }
