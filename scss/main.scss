@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Mali:wght@300;400;500;600;700&display=swap');
+
+html {
+   font-family: 'Mali', cursive;
+}
+
+$primary-color : #4b086d;
+$secondary-color : #48cfad;
+$nav-color : #4b086d;
+
+$square-size : 40px;
+$screen-size : 600px;
+
+@import "special"; // reset CSS
+
+@import "animations";
+@import "loading-screen";
+@import "start-screen";
+@import "game-screen";
+@import "development"

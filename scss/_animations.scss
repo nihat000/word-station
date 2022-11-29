@@ -1,0 +1,36 @@
+@keyframes wave {
+   0% {
+      clip-path: polygon(0% 40%, 10% 50%, 15% 65%, 20% 70%, 30% 60%, 40% 60%, 50% 75%, 70% 60%, 90% 60%, 95% 50%, 100% 0, );
+   }
+
+   100% {
+      clip-path: polygon(0% 50%, 10% 40%, 15% 45%, 20% 50%, 30% 70%, 40% 65%, 50% 65%, 70% 55%, 90% 55%, 95% 35%, 100% 0, );
+   }
+}
+
+@keyframes spin {
+   0% {}
+
+   50% {
+      transform: rotateZ(360deg);
+   }
+
+   100% {
+      transform: rotateZ(0);
+
+   }
+}
+
+@keyframes shake {
+   0% {
+      transform: translateX(5px);
+   }
+
+   50% {
+      transform: translateX(-3px);
+   }
+
+   100% {
+      transform: translateX(0);
+   }
+}

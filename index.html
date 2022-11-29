@@ -5,18 +5,55 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>My Word</title>
-	<link rel="stylesheet" href="css/special.css">
-	<link rel="stylesheet" href="css/index.css">
-	<script src="./js/Play.js" defer></script>
+	<title>Word Station</title>
+	<link rel="stylesheet" href="css/main.css">
+	<script src="./js/App.js" defer></script>
 </head>
 
 <body>
-	<section class="game-screen">
+	<section class="loading-screen screen">
+		<div class="content">
+			<div class="title">
+				<h1> Word Station </h1>
+				<h1> Word Station </h1>
+			</div>
+			<div class="spinner"></div>
+		</div>
+	</section>
+	<section class="start-screen screen d-none">
+		<div class="content">
+			<h1> Menu </h1>
+			<h2 class="name text-center mt-2"> Word Station </h2>
+			<div class="stage">
+				<img class="stage-previous" src="img/btn-previous.svg" alt="">
+				<img class="stage-next" src="img/btn-next.svg" alt="" srcset="">
+				<div class="stage-box">
+					<img src="img/stage-genclik.svg" alt="">
+				</div>
+				<div class="stage-box" style="display: none;">
+					<img src="img/stage-28-locked.svg" alt="">
+				</div>
+			</div>
+			<div class="actions">
+				<img src="img/btn-info.svg" alt="" srcset="" width="64px">
+				<img class="play" src="img/btn-play.svg" alt="" width="64px">
+				<img src="img/btn-shop.svg" alt="" width="64px">
+			</div>
+			<div class="start-screen-info">
+				<div class="content">
+					<h1> Info </h1>
+					<p> Made by love </p>
+					<p> Developer : Nihat Abdullazade </p>
+					<p> Graphic Designer : Ibrahim </p>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="game-screen d-none">
 		<div class="content">
 			<div class="status">
+				<span id="level"> Level 1</span>
 				<div class="status-level">
-					<span id="level"> Level 1</span>
 				</div>
 				<div class="status-assets">
 					<div class="status-assets-diamond">
@@ -38,11 +75,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="start-screen">
-		<div class="content">
 
-		</div>
-	</section>
 </body>
 
 </html>
