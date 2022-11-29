@@ -30,7 +30,7 @@ const gamePadEl = document.querySelector('.game-screen .gamepad')
 
 
 
-setTimeout(fetchData, 100)
+setTimeout(fetchData, 1100)
 
 function fetchData() {
    fetch(`./api/levels/${Game.level}.json`)
